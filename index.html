@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Map</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+      text-align: center;
+    }
+    .map-container {
+      position: relative;
+      display: inline-block;
+    }
+    .map-image {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Popup overlay */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      position: relative;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .popup-content img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+    .close-btn {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 40px;
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
+      background: white;
+      border-radius: 50%;
+      padding: 5px 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Peta Interaktif</h2>
+
+  <div class="map-container">
+    <img src="map.svg" alt="Map" class="map-image">
+    <!-- Clickable zones -->
+    <div style="position:absolute; top:12%; left:70%; width:6%; height:6%; cursor:pointer; background:rgba(255,0,0,0);" onclick="openPopup('form.svg')"></div>
+    <div style="position:absolute; top:29%; left:55%; width:6%; height:6%; cursor:pointer; background:rgba(0,255,0,0);" onclick="openPopup('abx.svg')"></div>
+    <div style="position:absolute; top:35%; left:55%; width:6%; height:6%; cursor:pointer; background:rgba(0,0,255,0);" onclick="openPopup('checkup.svg')"></div>
+    <div style="position:absolute; top:38%; left:80%; width:6%; height:6%; cursor:pointer; background:rgba(255,255,0,0);" onclick="openPopup('fbm.svg')"></div>
+    <div style="position:absolute; top:53%; left:60%; width:6%; height:6%; cursor:pointer; background:rgba(0,255,255,0);" onclick="openPopup('dam.svg')"></div>
+    <div style="position:absolute; top:83%; left:37.5%; width:6%; height:6%; cursor:pointer; background:rgba(255,0,255,0);" onclick="openPopup('kitch.svg')"></div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <img id="popup-img" src="" alt="Popup Content">
+    </div>
+  </div>
+
+  <script>
+    function openPopup(imgSrc) {
+      document.getElementById("popup-img").src = imgSrc;
+      document.getElementById("popup").style.display = "flex";
+    }
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("popup-img").src = "";
+    }
+  </script>
+
+</body>
+</html>
