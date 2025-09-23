@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Map with Popups</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { text-align:center; font-family:Arial, sans-serif; margin:0; padding:0; }
+    .map-container { position:relative; display:inline-block; max-width:1200px; width:100%; }
+    .map-container img { width:100%; height:auto; display:block; }
+    .click-zone {
+      position:absolute;
+      width:67px; height:67px; /* invisible, slightly larger zones */
+      background:transparent;
+      cursor:pointer;
+    }
+    .overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.8);
+      display:none; justify-content:center; align-items:center;
+      z-index:1000;
+    }
+    .overlay img {
+      max-width:80vw; max-height:80vh;
+      border-radius:10px; box-shadow:0 0 20px #000;
+    }
+    .close-btn {
+      position:absolute; top:20px; right:20px;
+      background:#d90429; color:#fff; font-size:28px;
+      padding:12px 24px; border:none; border-radius:10px;
+      cursor:pointer; z-index:1100;
+    }
+  </style>
+</head>
+<body>
+  <h2>Interactive Map - World Pharmacist Day 2025</h2>
+  <div class="map-container">
+    <img src="map.png" alt="Map" />
+
+    <!-- FORM (adjusted to 70% left, 12% top) -->
+    <div class="click-zone" style="left:70%; top:12%;" onclick="openOverlay('form.png')"></div>
+    <!-- ABX (adjusted to 55% left, 23% top) -->
+    <div class="click-zone" style="left:55%; top:23%;" onclick="openOverlay('abx.png')"></div>
+    <!-- CHECKUP (adjusted to 55% left, 30% top) -->
+    <div class="click-zone" style="left:55%; top:30%;" onclick="openOverlay('checkup.png')"></div>
+    <!-- FBM (adjusted to 81% left, 35% top) -->
+    <div class="click-zone" style="left:81%; top:35%;" onclick="openOverlay('fbm.png')"></div>
+    <!-- DAM (adjusted to 55% left, 50% top) -->
+    <div class="click-zone" style="left:55%; top:50%;" onclick="openOverlay('dam.png')"></div>
+    <!-- KITCH (adjusted to 35% left, 75% top) -->
+    <div class="click-zone" style="left:35%; top:75%;" onclick="openOverlay('kitch.png')"></div>
+  </div>
+
+  <div id="overlay" class="overlay" onclick="closeOverlay()">
+    <button class="close-btn" onclick="closeOverlay()">X</button>
+    <img id="overlay-img" src="" alt="Popup" />
+  </div>
+
+  <script>
+    function openOverlay(src){
+      document.getElementById('overlay-img').src = src;
+      document.getElementById('overlay').style.display = 'flex';
+    }
+    function closeOverlay(){
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
